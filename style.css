@@ -1,0 +1,231 @@
+.error {
+  font-style: italic;
+  color: red;
+}
+
+/**********************************/
+/**    CUSTOMER-SIDE STYLES      **/
+/**********************************/
+
+/**********************************/
+/**           GENERAL            **/
+/**********************************/
+
+body {
+	font-size: 70%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+h1.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 2.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.xfaq-category {} 
+
+h2 {  /*was .xfaq-category*/
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 1.65em;
+  font-weight: bold;
+  color: #903;
+  margin: 7px 0;
+}
+
+p {
+	font-size: 1em;
+}
+
+p.intro {
+  color: #666;
+  margin: 5px 0;
+}
+
+a {
+  color: #069;
+}
+
+pre {
+  font-size: 1em;
+  font-weight: normal;
+  padding: 10px 25px;
+  margin: 7px 2px;
+}
+
+
+/**********************************/
+/**        MAIN DISPLAY          **/
+/**********************************/
+
+dl.xfaq  {
+  margin: 10px 0;
+  padding: 0;
+  background:#FFF;
+}
+
+dl.xfaq dt {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #036;
+  font-size: 1.1em;
+  background-color: #E8E1CA;
+  margin: 0px;
+  padding: 5px;
+  float: none;
+}
+
+dl.xfaq dt span {  /* New! */
+  color: red;
+}
+
+dl.xfaq dt pre {
+  background-color: #F1EDDF;
+}
+
+dl.xfaq dd {
+  margin: 2px 0;
+  background: #F5F2E8;
+  padding: 5px;
+  float: none;
+}
+
+dl.xfaq dd span {  /* New! */
+  color: red;
+}
+
+dl.xfaq dd pre {
+  font-size: 1em;
+  background-color: #FAF9F4;
+}
+
+.add-answer {
+  margin: 5px 0 35px 0;
+  padding: 0;
+}
+
+p.return {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+/**********************************/
+/**            FORMS             **/
+/**********************************/
+
+form {
+	margin: 15px 0;
+	padding: 0;
+}
+
+form input {
+  margin-top: 15px;
+}
+
+form dl input {
+  margin-top: 0;
+}
+
+form dl {
+  background-color:#F5F2E8;
+  padding: 5px 7px;
+  margin: 2px 0;
+}
+
+form dt {
+  float: left;
+  padding: 5px 10px 0 0;
+}
+
+form dl.entrybox {
+	margin-bottom: 15px;
+	}
+
+form dl.entrybox dt {
+  margin-bottom: 5px;
+  float: none;
+}
+
+form dl.entrybox dd {
+  margin: 0;
+  padding-bottom: 5px;
+  float: none;
+}
+
+
+
+/**********************************/
+/**        JASON'S STYLES        **/
+/**********************************/
+
+
+
+
+.xfaq-question {
+  font-family: arial;
+  font-weight: bold;
+  color: #069;
+  font-size: 1.4em;
+}
+
+.xfaq-answer dl {
+
+}
+
+.xfaq-answer dt {
+
+}
+
+.xfaq-answer dd {
+
+}
+
+.search-header {
+  font-style: italic;
+}
+
+.search-box {
+
+}
+
+.go-home {
+
+}
+
+.go-admin {
+
+}
+
+.action-explain {
+  font-style: italic;
+}
+
+
+
+
+.xfaq-question-edit dl {
+
+}
+
+.xfaq-question-edit dt {
+
+}
+
+.xfaq-question-edit dd {
+
+}
+
+.submitted {
+  color: orange;
+}
+
+.live {
+  color: green;
+}
+
+.dead {
+  color: red;
+}
