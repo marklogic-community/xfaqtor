@@ -1,3 +1,6 @@
+XFAQTOR 1.0.0
+
+
 WHAT IS XFAQTOR?
 
 xfaqtor is an automated Frequently Asked Questions (FAQ) management tool
