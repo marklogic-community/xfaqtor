@@ -17,6 +17,8 @@
  : affiliated with the Apache Software Foundation.
  :)
 
+declare namespace e=""
+
 import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
 import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
 
@@ -69,12 +71,12 @@ xdmp:set-response-content-type("text/html"),
 
     <dl class="entrybox">
     <dt>Edit Answer:</dt>
-    <dd><textarea name="text" cols="40" rows="5">{$answer/text/text()}</textarea></dd>
+    <dd><textarea name="text" cols="40" rows="5">{$answer/e:text/text()}</textarea></dd>
     </dl>
   
     <dl>
     <dt>Edit State:</dt>
-    <dd> { print-state-select("state", $answer/state) } </dd>
+    <dd> { print-state-select("state", $answer/e:state) } </dd>
     </dl>
   
     <input type="submit" name="change" value="Change!"/>

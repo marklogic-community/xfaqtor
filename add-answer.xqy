@@ -17,6 +17,8 @@
  : affiliated with the Apache Software Foundation.
  :)
 
+declare namespace e=""
+
 import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
 import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
 
@@ -62,7 +64,7 @@ xdmp:set-response-content-type("text/html"),
   return
 
   <span>
-    <dl class="xfaq"><dt>{$question/text/text()}</dt></dl>
+    <dl class="xfaq"><dt>{$question/e:text/text()}</dt></dl>
     <form action="add-answer-go.xqy" class="xfaq-answer">
       <input type="hidden" name="questid" value="{$questid}"/>
       <dl class="entrybox">
