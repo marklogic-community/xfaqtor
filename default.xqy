@@ -16,10 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
-
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 xdmp:set-response-content-type("text/html"),
 
 <html xml:space="preserve">
@@ -37,10 +36,10 @@ xdmp:set-response-content-type("text/html"),
 <!-- @BeginEditable id="body" -->
 
 
-{ print-intro() }
+{ xfd:print-intro() }
 
 <a name="top"></a>
-{ print-search() }
+{ xfd:print-search() }
 
 <p>
 <a href="add-question.xqy">Submit a new question</a>
@@ -48,13 +47,13 @@ xdmp:set-response-content-type("text/html"),
 
 {
   (: We could also have logic to display a single category :)
-  let $names := get-live-category-names()
+  let $names := xfl:get-live-category-names()
   return
   if (empty($names)) then
     <div class="error">No 'live' entries yet</div>
   else
     for $cat in $names
-    return print-category($cat)
+    return xfd:print-category($cat)
 }
 
 

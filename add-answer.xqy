@@ -16,11 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-declare namespace e=""
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
@@ -51,25 +49,25 @@ xdmp:set-response-content-type("text/html"),
   if ($questid = "") then
     <span>
       <div class="error">The 'questid' parameter is missing</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else if (not($questid castable as xs:integer)) then
     <span>
       <div class="error">The 'questid' parameter must be an integer</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else
 
-  let $question := get-question(xs:integer($questid))
+  let $question := xfl:get-question(xs:integer($questid))
   return
 
   <span>
-    <dl class="xfaq"><dt>{$question/e:text/text()}</dt></dl>
+    <dl class="xfaq"><dt>{$question/text/text()}</dt></dl>
     <form action="add-answer-go.xqy" class="xfaq-answer">
       <input type="hidden" name="questid" value="{$questid}"/>
       <dl class="entrybox">
       <dt>Your answer:</dt>
-      <dd><textarea name="text" cols="40" rows="5"> </textarea></dd>
+      <dd><textarea name="text" cols="40" rows="5">&nbsp;</textarea></dd>
       </dl>
     
       <input type="submit" name="answer" value="Answer!"/>

@@ -16,14 +16,14 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
 let $q := xdmp:get-request-field("q")
-let $entries := search-entries($q)
+let $entries := xfl:search-entries($q)
 
 return
 
@@ -43,14 +43,14 @@ return
 <!-- @BeginEditable id="body" -->
 
 
-{ print-intro() }
+{ xfd:print-intro() }
 
 <form action="search.xqy">
   <input type="text" name="q" value="{$q}"/>
   <input type="submit" value="Search"/>
 </form>
 
-{ print-go-home() }
+{ xfd:print-go-home() }
 
 <hr />
 <h2>Search results for "{ $q }":</h2>
@@ -58,7 +58,7 @@ return
 {
   if (empty($entries)) then <div class="error">No entries</div> else
   for $entry in $entries
-  return print-entry($entry)
+  return xfd:print-entry($entry)
 }
 
 

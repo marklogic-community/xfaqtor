@@ -16,13 +16,13 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
-<html xml:space="preserve">
+<html xml:space="preserve"> 
 <!-- @Template href="/default.tmpl" -->
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -44,7 +44,9 @@ xdmp:set-response-content-type("text/html"),
 <form action="add-question-go.xqy" method="get" class="xfaq-ask">
   <dl class="entrybox">
   <dt>Your Question:</dt>
-  <dd><textarea name="text" cols="40" rows="5"> </textarea></dd>
+  <dd>
+    <textarea name="text" cols="40" rows="5">&nbsp;</textarea>
+  </dd>
   </dl>
 
   <dl>
@@ -54,7 +56,7 @@ xdmp:set-response-content-type("text/html"),
     <select name="old-category">
       <option value="">Choose a Category</option>
       {
-        for $cat in get-live-category-names()
+        for $cat in xfl:get-live-category-names()
         return <option>{$cat}</option>
       }
     </select>

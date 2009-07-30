@@ -16,9 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
@@ -37,7 +37,7 @@ xdmp:set-response-content-type("text/html"),
 <!-- @BeginEditable id="body" -->
 
 
-{ print-intro() }
+{ xfd:print-intro() }
 
 {
   let $state := xdmp:get-request-field("state", "all") (: default = all :)
@@ -47,13 +47,13 @@ xdmp:set-response-content-type("text/html"),
   
   <span>
     <form>
-      Limit view to state: { print-state-select-all("state", $state) }
+      Limit view to stat { xfd:print-state-select-all("state", $state) }
       <input type="submit" value="Change State"/>
     </form>
   
     {
-      for $entry in get-entries-in-states($states)
-      return print-admin-entry($entry, $states)
+      for $entry in xfl:get-entries-in-states($states)
+      return xfd:print-admin-entry($entry, $states)
     }
   
     <a href="add-question.xqy">Submit a new question</a>

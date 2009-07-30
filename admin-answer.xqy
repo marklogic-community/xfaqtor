@@ -16,11 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-declare namespace e=""
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
@@ -47,22 +45,22 @@ xdmp:set-response-content-type("text/html"),
   if ($ansid = "") then
     <span>
       <div class="error">The 'ansid' parameter is missing</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else if (not($ansid castable as xs:integer)) then
     <span>
       <div class="error">The 'ansid' parameter must be an integer</div>
-      { print-go-admin() }
+      { xfd:print-go-admin() }
     </span>
   else
 
-  let $answer := get-answer(xs:integer($ansid))
+  let $answer := xfl:get-answer(xs:integer($ansid))
   return
 
   if (empty($answer)) then
     <span>
       <div class="error">Answer id '{ $ansid }' unknown</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else
 
@@ -71,12 +69,12 @@ xdmp:set-response-content-type("text/html"),
 
     <dl class="entrybox">
     <dt>Edit Answer:</dt>
-    <dd><textarea name="text" cols="40" rows="5">{$answer/e:text/text()}</textarea></dd>
+    <dd><textarea name="text" cols="40" rows="5">{$answer/text/text()}</textarea></dd>
     </dl>
   
     <dl>
-    <dt>Edit State:</dt>
-    <dd> { print-state-select("state", $answer/e:state) } </dd>
+    <dt>Edit Stat</dt>
+    <dd> { xfd:print-state-select("state", $answer/state) } </dd>
     </dl>
   
     <input type="submit" name="change" value="Change!"/>

@@ -16,9 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
@@ -60,16 +60,16 @@ xdmp:set-response-content-type("text/html"),
   else if ($category = "") then 
     <span>
       <div class="error">No category provided</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else if (normalize-space($text) = "") then
     <span>
       <div class="error">No question text provided</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else
 
-  let $add := add-question($category, $text)
+  let $add := xfl:add-question($category, $text)
   return
 
   <span>
@@ -77,7 +77,7 @@ xdmp:set-response-content-type("text/html"),
       Your question has been recorded.  After administrator review it will be
       posted on the live site.
     </div>
-    { print-go-home() }
+    { xfd:print-go-home() }
   </span>
 }
 

@@ -16,9 +16,9 @@
  : The use of the Apache License does not indicate that this project is
  : affiliated with the Apache Software Foundation.
  :)
-
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-lib.xqy"
-import module "http://www.w3.org/2003/05/xpath-functions" at "xfaqtor-display.xqy"
+xquery version "1.0-ml";
+import module namespace xfl = "http://www.marklogic.com/xfaqtor-lib" at "xfaqtor-lib.xqy";
+import module namespace xfd = "http://www.marklogic.com/xfaqtor-display" at "xfaqtor-display.xqy";
 
 xdmp:set-response-content-type("text/html"),
 
@@ -52,31 +52,31 @@ xdmp:set-response-content-type("text/html"),
   else if ($questid = "") then
     <span>
       <div class="error">The 'questid' parameter is missing</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else if (not($questid castable as xs:integer)) then
     <span>
       <div class="error">The 'questid' parameter must be an integer</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else if (normalize-space($text) = "") then
     <span>
       <div class="error">No answer text provided</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else
   
-  let $question := get-question(xs:integer($questid))
+  let $question := xfl:get-question(xs:integer($questid))
   return
   
   if (empty($question)) then
     <span>
       <div class="error">Question id '{ $questid }' unknown</div>
-      { print-go-home() }
+      { xfd:print-go-home() }
     </span>
   else
   
-  let $add := add-answer($question, $text)
+  let $add := xfl:add-answer($question, $text)
   return
 
   <span>
@@ -84,7 +84,7 @@ xdmp:set-response-content-type("text/html"),
       Your answer has been recorded.  After administrator review it will be 
       posted on the live site.
     </div>
-    { print-go-home() }
+    { xfd:print-go-home() }
   </span>
 }
 
